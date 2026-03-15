@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Dark theme (default) ─────────────────────────────────── */
+@layer base {
+  :root {
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+    --card: 222 47% 7%;
+    --card-foreground: 213 31% 91%;
+    --popover: 222 47% 7%;
+    --popover-foreground: 213 31% 91%;
+    --primary: 263 70% 60%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 222 47% 11%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 223 47% 11%;
+    --muted-foreground: 215.4 16.3% 56.9%;
+    --accent: 216 34% 17%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+    --ring: 263 70% 60%;
+    --radius: 0.75rem;
+  }
+
+  /* ─── Light theme ─────────────────────────────────────────── */
+  .light {
+    --background: 220 33% 97%;
+    --foreground: 222 47% 8%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 8%;
+    --primary: 263 70% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 20% 94%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 220 20% 94%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 220 20% 92%;
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 20% 88%;
+    --input: 220 20% 88%;
+    --ring: 263 70% 50%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+
+  html {
+    scroll-behavior: smooth;
+    overscroll-behavior: none;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    overflow-x: hidden;
+  }
+}
+
+/* ─── Utility classes ─────────────────────────────────────── */
+@layer utilities {
+  /* Glass card — dark mode */
+  .glass {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    contain: layout style;
+  }
+  /* Glass card — light mode */
+  .light .glass {
+    background: rgba(255, 255, 255, 0.80);
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent;
+  }
+
+  .gradient-border {
+    background: linear-gradient(hsl(var(--background)), hsl(var(--background))) padding-box,
+      linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899) border-box;
+    border: 1px solid transparent;
+  }
+
+  .glow       { box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); }
+  .glow-purple{ box-shadow: 0 0 30px rgba(139, 92, 246, 0.4); }
+}
+
+/* ─── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.35); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(99,102,241,0.55); }
+
+/* ─── GPU-composited fixed elements (no scroll jank) ─────── */
+.fixed-gpu {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* ─── Sidebar ─────────────────────────────────────────────── */
+.sidebar-bg {
+  background: rgba(5, 8, 20, 0.97);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+.light .sidebar-bg {
+  background: rgba(255, 255, 255, 0.98);
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 1px 0 8px rgba(0,0,0,0.04);
+}
+
+/* ─── Navbar / TopNav ─────────────────────────────────────── */
+.navbar-bg {
+  background: rgba(5, 8, 20, 0.94);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.light .navbar-bg {
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+}
+
+/* ─── Hero grid ───────────────────────────────────────────── */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(99, 102, 241, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.07) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.light .grid-bg {
+  background-image:
+    linear-gradient(rgba(99, 102, 241, 0.10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.10) 1px, transparent 1px);
+}
+
+/* ─── Animations ─────────────────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-16px); }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(99,102,241,0.25); }
+  50%       { box-shadow: 0 0 40px rgba(139,92,246,0.5); }
+}
+@keyframes gradient-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-float       { animation: float 6s ease-in-out infinite; }
+.animate-pulse-glow  { animation: pulse-glow 3s ease-in-out infinite; }
+.animate-gradient    { background-size: 200% 200%; animation: gradient-shift 4s ease infinite; }
+
+/* ─── Kanban drag ─────────────────────────────────────────── */
+.dragging    { opacity: 0.5; transform: scale(1.02); }
+.drag-overlay{ box-shadow: 0 25px 50px rgba(0,0,0,0.4); transform: rotate(1.5deg); }
+
+/* ─── Light mode: remap dashboard hardcoded colours ────────── */
+/* Only target dashboard children, not marketing pages */
+.light .sidebar-bg .text-white,
+.light [style*="paddingLeft"] .text-white {
+  color: hsl(222 47% 8%) !important;
+}
+.light .text-indigo-300 { color: #4338ca !important; }
+.light .text-indigo-400 { color: #4338ca !important; }
+.light .gradient-text   { color: transparent !important; }
+/* Muted text is already handled by CSS vars */
