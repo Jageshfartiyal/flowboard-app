@@ -1,7 +1,7 @@
 import { Project, Task } from "@/types";
 
 const now = new Date();
-const d = (daysOffset: number) => new Date(now.getTime() + daysOffset * 86400000).toISOString();
+const d = (daysOffset: number) => new Date(now.getTime() + daysOffset * 86400000);
 
 export const DEMO_PROJECTS: Project[] = [
   {
