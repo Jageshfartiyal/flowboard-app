@@ -51,7 +51,7 @@ export default function SettingsPage() {
     setIsSaving(true);
     await new Promise((r) => setTimeout(r, 1000));
     setIsSaving(false);
-    toast({ title: "Profile updated", description: "Your changes have been saved." });
+    toast({ title: "Profile updated", description: "Your changes have been saved.", variant: "success" });
   };
 
   return (
@@ -206,6 +206,7 @@ export default function SettingsPage() {
                           toast({
                             title: "Saved",
                             description: "Notification preferences updated.",
+                            variant: "success",
                           })
                         }
                       >

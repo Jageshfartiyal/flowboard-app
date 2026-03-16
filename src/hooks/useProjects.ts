@@ -41,7 +41,7 @@ export function useCreateProject() {
     },
     onSuccess: (newProject) => {
       queryClient.invalidateQueries({ queryKey: ["projects"] });
-      toast({ title: "Project created", description: `"${newProject.name}" has been created.` });
+      toast({ title: "Project created", description: `"${newProject.name}" has been created.`, variant: "success" });
     },
     onError: () => {
       toast({ title: "Error", description: "Failed to create project.", variant: "destructive" });
@@ -61,7 +61,7 @@ export function useUpdateProject() {
     onSuccess: (updatedProject) => {
       queryClient.invalidateQueries({ queryKey: ["projects"] });
       queryClient.invalidateQueries({ queryKey: ["projects", updatedProject.id] });
-      toast({ title: "Project updated", description: "Changes saved successfully." });
+      toast({ title: "Project updated", description: "Changes saved successfully.", variant: "success" });
     },
     onError: () => {
       toast({ title: "Error", description: "Failed to update project.", variant: "destructive" });
@@ -81,7 +81,7 @@ export function useDeleteProject() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["projects"] });
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
-      toast({ title: "Project deleted", description: "Project and its tasks have been deleted." });
+      toast({ title: "Project deleted", description: "Project and its tasks have been deleted.", variant: "success" });
     },
     onError: () => {
       toast({ title: "Error", description: "Failed to delete project.", variant: "destructive" });

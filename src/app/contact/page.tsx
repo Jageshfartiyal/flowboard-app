@@ -7,8 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Mail, MessageSquare, MapPin, Clock } from "lucide-react";
 import { useState } from "react";
-import { toast } from "react-hot-toast";
-import { Toaster } from "react-hot-toast";
+import { useToast } from "@/components/ui/use-toast";
 
 const contactInfo = [
   {
@@ -38,6 +37,7 @@ const contactInfo = [
 ];
 
 export default function ContactPage() {
+  const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({
     name: "",
@@ -50,14 +50,13 @@ export default function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
     await new Promise((r) => setTimeout(r, 1500));
-    toast.success("Message sent! We'll get back to you within 24 hours.");
+    toast({ title: "Message sent!", description: "We'll get back to you within 24 hours.", variant: "success" });
     setForm({ name: "", email: "", subject: "", message: "" });
     setIsSubmitting(false);
   };
 
   return (
     <main className="min-h-screen bg-background">
-      <Toaster position="top-right" />
       <Navbar />
 
       <section className="pt-32 pb-16 relative">

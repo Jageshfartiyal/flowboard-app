@@ -34,7 +34,7 @@ export function useCreateTask() {
     onSuccess: (newTask) => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
       queryClient.invalidateQueries({ queryKey: ["projects"] });
-      toast({ title: "Task created", description: `"${newTask.title}" has been added.` });
+      toast({ title: "Task created", description: `"${newTask.title}" has been added.`, variant: "success" });
     },
     onError: () => {
       toast({ title: "Error", description: "Failed to create task.", variant: "destructive" });
@@ -73,7 +73,7 @@ export function useDeleteTask() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
       queryClient.invalidateQueries({ queryKey: ["projects"] });
-      toast({ title: "Task deleted", description: "Task has been removed." });
+      toast({ title: "Task deleted", description: "Task has been removed.", variant: "success" });
     },
     onError: () => {
       toast({ title: "Error", description: "Failed to delete task.", variant: "destructive" });
